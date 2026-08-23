@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JhansiRani Muthyala - Full Stack EdTech Developer</title>
+    <meta name="description" content="JhansiRani Muthyala - Full stack developer who built Sprachblitz, a German learning app with 487 native audio phrases. Available for freelance EdTech projects.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #0A0E27;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #00D9FF, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00D9FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-name {
+            font-size: 0.95rem;
+            color: #00D9FF;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+            font-weight: 800;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #00D9FF 0%, #7C3AED 50%, #FF006E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #AAA;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00D9FF, #7C3AED);
+            color: #0A0E27;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: #00D9FF;
+            transform: translateY(-4px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: #00D9FF;
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00D9FF, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #AAA;
+            margin-top: 0.5rem;
+        }
+
+        /* Sprachblitz Carousel */
+        .sprachblitz-hero {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sprachblitz-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .sprachblitz-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sprachblitz-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .sprachblitz-title h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .sprachblitz-subtitle {
+            font-size: 1.2rem;
+            color: #AAA;
+        }
+
+        .carousel-container {
+            position: relative;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .slides-container {
+            display: flex;
+            gap: 2rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .slide {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            flex: 0 0 100%;
+            min-width: 100%;
+            animation: slideInFromRight 0.8s ease-in-out;
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00D9FF, #7C3AED, transparent);
+        }
+
+        .slide:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: #00D9FF;
+            transform: translateY(-8px);
+        }
+
+        .slide-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide h3 {
+            font-size: 1.4rem;
+            color: #00D9FF;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide p {
+            color: #CCC;
+            line-height: 1.6;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 217, 255, 0.2);
+            border: 1px solid rgba(0, 217, 255, 0.5);
+            color: #00D9FF;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 217, 255, 0.4);
+            border-color: #00D9FF;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 217, 255, 0.5);
+        }
+
+        .dot.active {
+            background: #00D9FF;
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: rgba(0, 217, 255, 0.6);
+        }
+
+        .mascot-section {
+            text-align: center;
+            background: rgba(124, 58, 237, 0.1);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+        }
+
+        .mascot-emoji {
+            font-size: 6rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .mascot-section h3 {
+            font-size: 2rem;
+            color: #00D9FF;
+            margin-bottom: 1rem;
+        }
+
+        .mascot-section p {
+            color: #CCC;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-buttons-section {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00D9FF, #7C3AED, transparent);
+        }
+
+        .skill-card:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: #00D9FF;
+            transform: translateY(-8px);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: #00D9FF;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tag {
+            background: rgba(0, 217, 255, 0.15);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #00D9FF;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: rgba(0, 217, 255, 0.3);
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(0, 217, 255, 0.05) 100%);
+        }
+
+        .experience-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #00D9FF;
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            background: rgba(0, 217, 255, 0.1);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00D9FF;
+        }
+
+        .experience-date {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .experience-company {
+            color: #AAA;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: #CCC;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            margin: 4rem auto;
+            max-width: 900px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #CCC;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            color: #666;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
+                margin-top: 70px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slides-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .mascot-emoji {
+                font-size: 4rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">🐻 JhansiRani</div>
+            <ul class="nav-links">
+                <li><a href="#sprachblitz">Sprachblitz</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Hire Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-name">Full Stack EdTech Developer</div>
+            <h1>Hi, I'm <span class="hero-gradient">JhansiRani Muthyala</span></h1>
+            <p class="hero-subtitle">I built Sprachblitz—a production-ready German learning app with 487 native audio phrases, 6,900+ lines of code, and a passionate community. Now available for EdTech freelance projects.</p>
+            
+            <div class="hero-cta">
+                <a href="#sprachblitz" class="btn btn-primary">🐻 Try Sprachblitz</a>
+                <a href="#contact" class="btn btn-secondary">Let's work together</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number">487</div>
+                    <div class="stat-label">Native audio phrases</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6,900+</div>
+                    <div class="stat-label">Lines of code</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Years professional dev</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">A1-B2</div>
+                    <div class="stat-label">German levels</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sprachblitz Section -->
+    <section class="sprachblitz-hero" id="sprachblitz">
+        <div class="sprachblitz-container">
+            <div class="sprachblitz-title">
+                <h2>🐻 Meet Sprachblitz</h2>
+                <p class="sprachblitz-subtitle">Your German learning companion, built from scratch with production-ready code</p>
+            </div>
+
+            <div class="mascot-section">
+                <div class="mascot-emoji">🐻</div>
+                <h3>Your Learning Bear</h3>
+                <p>Sprachblitz is powered by a friendly bear mascot who guides you through interactive German lessons, gamified grammar challenges, and real-world vocabulary. Built with React, Firebase, and 487 native German audio phrases.</p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="slides-container" id="carousel">
+                    <div class="slide">
+                        <div class="slide-icon">🐻</div>
+                        <h3>Meet Bruno</h3>
+                        <p>Your German learning companion. Bruno's room is where your journey begins. "Guten Abend! Ich bin Bruno. Willkommen in meinem Zimmer!"</p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon">⚡</div>
+                        <h3>Daily Blitz Challenge</h3>
+                        <p>5 quick questions every day at your level. Earn XP and streaks. "Start today's Blitz — up to +52 XP"</p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon">🎮</div>
+                        <h3>Free Practice Mode</h3>
+                        <p>Play grammar games, word matching, and article challenges. No pressure, no time limits. Learn what YOU want when YOU want.</p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon">📝</div>
+                        <h3>Grammar Mastery</h3>
+                        <p>13 essential grammar topics. "Goethe A1 Unified Grammar Curriculum Matrix" — Core syntax rules, contextual formulation usage, and morphological tracking.</p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon">🔊</div>
+                        <h3>Listening Lab</h3>
+                        <p>Listen to 487 native German phrases. Answer comprehension questions. "A1 Listening Lab — Play Audio, Show Transcript"</p>
+                    </div>
+
+                    <div class="slide">
+                        <div class="slide-icon">✏️</div>
+                        <h3>Mock Exams Ready</h3>
+                        <p>Practice with official Goethe-Institut format exams. A1, A2, B1, B2 levels. All four skills: Listening, Reading, Writing, Speaking.</p>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn" onclick="prevSlide()">❮</button>
+                    <div class="carousel-dots" id="dots"></div>
+                    <button class="carousel-btn" onclick="nextSlide()">❯</button>
+                </div>
+            </div>
+
+            <div class="cta-buttons-section">
+                <a href="https://sprachblitz-app.github.io/sprachblitz-app/" target="_blank" class="btn btn-primary">🐻 Try Sprachblitz Live</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeDQeRnBnHd5uJOpHvDnXjdJMeoatuZtMrVhAWHM7Oohxn_gQ/viewform" target="_blank" class="btn btn-secondary">📝 Share Your Feedback</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">What I Build With</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>Frontend</h3>
+                <div class="skill-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">Tailwind</span>
+                    <span class="tag">UI/UX</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>Backend & Database</h3>
+                <div class="skill-tags">
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Firestore</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>DevOps & Tools</h3>
+                <div class="skill-tags">
+                    <span class="tag">GitHub</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Git CI/CD</span>
+                    <span class="tag">PWA</span>
+                    <span class="tag">Service Workers</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>Audio & Media</h3>
+                <div class="skill-tags">
+                    <span class="tag">Piper TTS</span>
+                    <span class="tag">Audio API</span>
+                    <span class="tag">Web Audio</span>
+                    <span class="tag">Offline Audio</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>Data & Analytics</h3>
+                <div class="skill-tags">
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Tableau</span>
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">M.Sc Analytics</span>
+                </div>
+            </div>
+
+            <div class="skill-card">
+                <h3>Languages</h3>
+                <div class="skill-tags">
+                    <span class="tag">English C1</span>
+                    <span class="tag">German A2</span>
+                    <span class="tag">Telugu Native</span>
+                    <span class="tag">Hindi B1</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="experience-container">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">M.Sc Data Analytics</div>
+                        <div class="experience-company">Berlin School of Business and Innovation</div>
+                    </div>
+                    <div class="experience-date">2022–2024</div>
+                </div>
+                <div class="experience-description">Specialized in data quality frameworks, business intelligence, and analytics. Built visualizations and statistical analyses for real-world business problems.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Software Engineer</div>
+                        <div class="experience-company">Mindting Software Labs — Bengaluru, India</div>
+                    </div>
+                    <div class="experience-date">2020–2022</div>
+                </div>
+                <div class="experience-description">Built full-stack web applications using React, Python, JavaScript, and Firebase. Worked with agile teams on API design, CI/CD, and Docker deployment.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">B.Sc Computer Science</div>
+                        <div class="experience-company">Vignan Degree and P.G. College — India</div>
+                    </div>
+                    <div class="experience-date">2017–2020</div>
+                </div>
+                <div class="experience-description">Foundation in algorithms, data structures, and software engineering. Strong technical fundamentals in programming and system design.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to build the next big thing? 🐻</h2>
+        <p>I'm JhansiRani Muthyala, available for freelance full-stack development, EdTech projects, and contract work. Let's create something amazing together.</p>
+        <div class="cta-buttons">
+            <a href="mailto:sprachblitz2026@gmail.com" class="btn btn-primary">📧 Email: sprachblitz2026@gmail.com</a>
+            <a href="https://www.linkedin.com/in/Vanity" target="_blank" class="btn btn-secondary">💼 LinkedIn</a>
+            <a href="https://github.com/Sprachblitz-app/JhansiRani711" target="_blank" class="btn btn-secondary">💻 GitHub</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 JhansiRani Muthyala. Based in Flensburg, Germany. Available globally for remote projects. 🐻</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const carousel = document.getElementById('carousel');
+        const dotsContainer = document.getElementById('dots');
+        const totalSlides = slides.length;
+
+        // Create dots
+        function createDots() {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Update carousel position
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        // Previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        // Go to specific slide
+        function goToSlide(n) {
+            currentSlide = n;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        // Auto-rotate slides
+        let autoSlideTimer;
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(() => {
+                nextSlide();
+            }, 2500); // Change slide every 2.5 seconds
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideTimer);
+            startAutoSlide();
+        }
+
+        // Initialize
+        createDots();
+        updateCarousel();
+        startAutoSlide();
+    </script>
+</body>
+</html>

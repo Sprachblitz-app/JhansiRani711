@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JhansiRani Muthyala - Full Stack EdTech Developer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0A0E27;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            padding: 1.2rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #00D9FF, #7C3AED);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: #ccc; transition: color 0.3s; }
+        .nav-links a:hover { color: #00D9FF; }
+
+        .hero {
+            margin-top: 60px;
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #00D9FF 0%, #7C3AED 50%, #FF006E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sprachblitz-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            margin: 4rem auto;
+            max-width: 1200px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00D9FF, #7C3AED, transparent);
+        }
+
+        .slide-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+        .slide h3 { font-size: 1.5rem; color: #00D9FF; margin-bottom: 1rem; }
+        .slide p { color: #CCC; max-width: 600px; line-height: 1.8; }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 217, 255, 0.2);
+            border: 1px solid rgba(0, 217, 255, 0.5);
+            color: #00D9FF;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 217, 255, 0.4);
+            border-color: #00D9FF;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 217, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 217, 255, 0.5);
+        }
+
+        .dot.active {
+            background: #00D9FF;
+            transform: scale(1.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00D9FF, #7C3AED);
+            color: #0A0E27;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: #00D9FF;
+            transform: translateY(-4px);
+        }
+
+        .contact-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            margin: 4rem auto;
+            max-width: 900px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .contact-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #CCC;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            color: #666;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .slide { padding: 2rem 1rem; min-height: 300px; }
+            .carousel-btn { width: 36px; height: 36px; }
+            .section-title { font-size: 1.8rem; }
+            .contact-buttons { flex-direction: column; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">🐻 JhansiRani</div>
+            <ul class="nav-links">
+                <li><a href="#sprachblitz">Sprachblitz</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Hi, I'm <span class="hero-gradient">JhansiRani Muthyala</span></h1>
+        <p style="font-size: 1.2rem; color: #AAA; margin-top: 1rem;">Full-stack developer who built Sprachblitz—a production-ready German learning app. Available for EdTech freelance projects.</p>
+    </section>
+
+    <section class="sprachblitz-section" id="sprachblitz">
+        <h2 class="section-title">🐻 Meet Sprachblitz</h2>
+
+        <div class="carousel-wrapper">
+            <div class="carousel" id="carousel">
+                <div class="slide">
+                    <div class="slide-icon">🐻</div>
+                    <h3>Your Learning Bear</h3>
+                    <p>Sprachblitz is powered by a friendly bear mascot who guides you through interactive German lessons, gamified grammar challenges, and real-world vocabulary. Built with React, Firebase, and 487 native German audio phrases.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">🐻</div>
+                    <h3>Meet Bruno</h3>
+                    <p>Your German learning companion. Bruno's room is where your journey begins. "Guten Abend! Ich bin Bruno. Willkommen in meinem Zimmer!" Start your daily lessons and track progress with gamified rewards.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">⚡</div>
+                    <h3>Daily Blitz Challenge</h3>
+                    <p>5 quick questions every day at your level. Earn XP and build streaks. "Start today's Blitz — up to +52 XP". Gamified learning keeps you coming back for more.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">🎮</div>
+                    <h3>Free Practice Mode</h3>
+                    <p>Play grammar games, word matching, and article challenges (der/die/das). No pressure, no time limits. "Play a game or browse any topic. Nothing is locked here." Learn what YOU want when YOU want.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">📝</div>
+                    <h3>Grammar Mastery</h3>
+                    <p>13 essential grammar topics including articles, pronouns, and verb forms. "Goethe A1 Unified Grammar Curriculum Matrix" — Core syntax rules, contextual formulation usage, and morphological tracking for true mastery.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">🔊</div>
+                    <h3>Listening Lab + Mock Exams</h3>
+                    <p>Listen to 487 native German phrases with transcripts. Practice with official Goethe-Institut format exams (A1, A2, B1, B2). All four skills: Listening, Reading, Writing, Speaking. Get exam-ready in your own time.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn" onclick="prevSlide()">❮</button>
+            <div class="carousel-dots" id="dots"></div>
+            <button class="carousel-btn" onclick="nextSlide()">❯</button>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="https://sprachblitz-app.github.io/sprachblitz-app/" target="_blank" class="btn btn-primary">🐻 Try Sprachblitz Live</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeDQeRnBnHd5uJOpHvDnXjdJMeoatuZtMrVhAWHM7Oohxn_gQ/viewform" target="_blank" class="btn btn-secondary">📝 Share Your Feedback</a>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Ready to build the next big thing? 🐻</h2>
+        <p>I'm JhansiRani Muthyala, available for freelance full-stack development, EdTech projects, and contract work. Let's create something amazing together.</p>
+        <div class="contact-buttons">
+            <a href="mailto:sprachblitz2026@gmail.com" class="btn btn-primary">📧 Email: sprachblitz2026@gmail.com</a>
+            <a href="https://www.linkedin.com/in/jhansiranimuthyala/" target="_blank" class="btn btn-secondary">💼 LinkedIn</a>
+            <a href="https://github.com/Sprachblitz-app/JhansiRani711" target="_blank" class="btn btn-secondary">💻 GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 JhansiRani Muthyala. Based in Flensburg, Germany. Available globally for remote projects. 🐻</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const carousel = document.getElementById('carousel');
+        const dotsContainer = document.getElementById('dots');
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function createDots() {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        let autoSlideTimer;
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(() => {
+                nextSlide();
+            }, 2500);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideTimer);
+            startAutoSlide();
+        }
+
+        createDots();
+        updateCarousel();
+        startAutoSlide();
+    </script>
+</body>
+</html>
